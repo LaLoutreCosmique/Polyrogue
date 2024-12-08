@@ -65,7 +65,7 @@ namespace Characters
             rb2d.AddForce(newForce, ForceMode2D.Force);
         }
         
-        public void Attack()
+         public virtual void Attack()
         {
             if (!m_AttackCooldown.HasEnded) return;
             

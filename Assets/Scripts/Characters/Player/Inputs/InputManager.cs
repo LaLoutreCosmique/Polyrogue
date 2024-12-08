@@ -22,6 +22,7 @@ namespace Characters.Player.Inputs
             
             m_PlayerActions.Rotation.performed += ctx => m_Player.OnRotate(ctx.ReadValue<Vector2>());
             m_PlayerActions.Attack.performed += _ => m_Player.Attack();
+            m_PlayerActions.Attack.canceled += _ => m_Player.StopAttack();
             m_PlayerActions.Dash.performed += _ => m_Player.Dash(m_Player.m_MoveDirection);
             
             EnableInputs();

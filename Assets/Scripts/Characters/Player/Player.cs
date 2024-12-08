@@ -8,11 +8,30 @@ namespace Characters.Player
     {
         InputManager m_InputManager;
 
+        bool m_IsAttacking;
+
         protected override void Awake()
         {
             base.Awake();
             m_InputManager = new InputManager(this);
             m_Tag = IDamageable.DamageableTag.Player;
+        }
+
+        public override void Attack()
+        {
+            base.Attack();
+            m_IsAttacking = true;
+        }
+
+        public void StopAttack()
+        {
+            m_IsAttacking = false;
+        }
+
+        protected override void OnAttackRecovered()
+        {
+            base.OnAttackRecovered();
+            if (m_IsAttacking) base.Attack();
         }
 
         public void OnMove(Vector2 dir)
