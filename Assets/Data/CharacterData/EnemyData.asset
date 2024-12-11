@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69ac8de1a5187764580682c044231e47, type: 3}
   m_Name: EnemyData
   m_EditorClassIdentifier: 
-  acceleration: 30
-  maxSpeed: 7
-  dashForce: 10
+  acceleration: 60
+  maxSpeed: 25
+  dashForce: 20
   dashCooldown: 1
-  dashDuration: 0.2
-  health: 2
+  dashDuration: 0.5
+  health: 3
   shieldHealth: 2
   takenKnockbackMultiplier: 1
   invincibilityDuration: 1
-  attackCooldown: 0.5
+  attackCooldown: 0.4
   attackDamage: 1
   attackSize: 1
-  attackKnockback: 5
+  attackKnockback: 10
   projectileSpeed: 1

@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   acceleration: 30
-  maxSpeed: 10
-  dashForce: 10
-  dashCooldown: 3
-  dashDuration: 0.2
+  maxSpeed: 15
+  dashForce: 20
+  dashCooldown: 1
+  dashDuration: 0.15
   health: 1
   shieldHealth: 3
-  takenKnockbackMultiplier: 1
+  takenKnockbackMultiplier: 0
   invincibilityDuration: 3
-  attackCooldown: 0.02
+  attackCooldown: 0.4
   attackDamage: 1
   attackSize: 1
   attackKnockback: 5

@@ -1,6 +1,6 @@
 using Characters.Player.Inputs;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Characters.Player
 {
@@ -9,6 +9,10 @@ namespace Characters.Player
         InputManager m_InputManager;
 
         bool m_IsAttacking;
+
+        [Header("Debug")]
+        [SerializeField] bool m_DebugAim;
+        [SerializeField] bool m_DebugVelocity;
 
         protected override void Awake()
         {
@@ -26,6 +30,7 @@ namespace Characters.Player
         public void StopAttack()
         {
             m_IsAttacking = false;
+            m_AttackCooldown.Complete();
         }
 
         protected override void OnAttackRecovered()
@@ -61,5 +66,21 @@ namespace Characters.Player
             base.Die();
             print("Oh non je suis mort");
         }
+
+#if UNITY_EDITOR
+        void OnDrawGizmos()
+        {
+            if (m_DebugAim)
+            {
+                Vector3 inputRotateV3 = new Vector3(m_RotateInput.x, m_RotateInput.y, 0);
+                Gizmos.DrawLine(transform.position, transform.position + inputRotateV3 * 100);      
+            }
+
+            if (m_DebugVelocity)
+            {
+                Gizmos.DrawLine(transform.position, transform.position + rb2d.velocity.ConvertTo<Vector3>());
+            }
+        }
+#endif
     }
 }

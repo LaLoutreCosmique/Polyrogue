@@ -1,7 +1,7 @@
+using System;
 using Characters.Projectiles;
 using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Utilities;
 
 namespace Characters
@@ -9,14 +9,16 @@ namespace Characters
     public class Character : MonoBehaviour, IDamageable
     {
         public IDamageable.DamageableTag m_Tag;
-        
+
+        public event Action<Vector2> OnChangePosition;
+
         public Rigidbody2D rb2d;
         [SerializeField] CharacterData m_InitialData;
         [SerializeField] protected GameObject m_ProjectilePrefab;
 
         Cooldown m_DashCooldown;
         protected Cooldown m_DashDurationCooldown;
-        Cooldown m_AttackCooldown;
+        protected Cooldown m_AttackCooldown;
         [HideInInspector] public Cooldown m_InvincibilityCooldown; // Start when hurt
         [HideInInspector] public CharacterData m_currentData;
         
@@ -45,6 +47,8 @@ namespace Characters
         
         void FixedUpdate()
         {
+            if (rb2d.velocity.magnitude > 0.2f) OnChangePosition?.Invoke(transform.position);
+            
             transform.rotation = m_RotateDirection;
             
             if (!m_DashDurationCooldown.HasEnded) return;
@@ -72,11 +76,11 @@ namespace Characters
             Vector3 spawnPosition = transform.position + new Vector3(m_RotateInput.normalized.x, m_RotateInput.normalized.y, 0) * transform.localScale.magnitude;
             GameObject newProjectileGo = Instantiate(m_ProjectilePrefab, spawnPosition, quaternion.identity);
             newProjectileGo.transform.localScale = transform.lossyScale * m_currentData.attackSize;
-            Vector2 projectileDirection = m_RotateInput.normalized.magnitude == 0f ? Vector2.up : m_RotateInput.normalized;
+            Vector2 projectileDirection = m_RotateInput.normalized.magnitude == 0f ? Vector2.up : m_RotateInput;
             
             Projectile newProjectile = newProjectileGo.GetComponent<Projectile>();
             float projectileSpeed = newProjectile.Speed * m_currentData.projectileSpeed;
-            newProjectile.Init(this, projectileDirection, projectileSpeed);
+            newProjectile.Init(this, projectileDirection.normalized, projectileSpeed);
             
             m_AttackCooldown.Start();
         }
@@ -86,15 +90,9 @@ namespace Characters
             if (dashDirection.magnitude < 0.1f || !m_DashCooldown.HasEnded) return;
 
             if (newDashCD > 0f)
-            {
-                print("nouveau temps");
                 m_DashCooldown.Start(newDashCD);
-            }
             else
-            {
-                print("ancien temps");
                 m_DashCooldown.Start();
-            }
 
             m_DashDurationCooldown.Start();
             rb2d.AddForce(dashDirection * m_currentData.dashForce, ForceMode2D.Impulse);

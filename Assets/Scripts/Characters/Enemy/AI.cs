@@ -1,25 +1,28 @@
+using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
-using Utilities;
+using Cooldown = Utilities.Cooldown;
+using Random = UnityEngine.Random;
 
 namespace Characters.Enemy
 {
     public class AI
     {
         Enemy m_Parent;
-        Transform m_Target;
+        Character m_Target;
         AIBehaviour m_AIData;
 
         Cooldown m_AttackTimer;
         Cooldown m_AttackPause;
 
-        Vector2 m_TargetDirection;
+        public Vector2 m_TargetDirection;
         bool m_TargetInAttackRange;
         bool m_TargetInRange;
         
         float TargetDistance => Vector2.Distance(m_Target.transform.position, m_Parent.transform.position);
 
-        public AI(Enemy enemy, Transform target, AIBehaviour AIData)
+        public AI(Enemy enemy, Character target, AIBehaviour AIData)
         {
             m_Parent = enemy;
             m_Target = target;
@@ -34,6 +37,9 @@ namespace Characters.Enemy
             m_TargetInRange = TargetDistance > m_AIData.maxTargetDistance ||
                               TargetDistance < m_AIData.minTargetDistance;
             m_TargetInAttackRange = TargetDistance > m_AIData.maxAttackDistance;
+
+            float speedMultiplier = Random.Range(0.7f, 1.3f);
+            m_Parent.m_currentData.maxSpeed *= speedMultiplier;
             
             ActionChecks();
             Dash();
@@ -51,11 +57,15 @@ namespace Characters.Enemy
         void ActionChecks()
         {
             // Vector direction
-            m_TargetDirection = m_Target.transform.position - m_Parent.transform.position;
-            m_Parent.SetRotateInput(m_TargetDirection.normalized);
+            Vector3 targetPosition = m_Target.transform.position + m_Target.rb2d.velocity.ConvertTo<Vector3>();
+            m_TargetDirection = targetPosition - m_Parent.transform.position;
+            
+            Vector3 aimTarget = m_Target.transform.position + m_Target.rb2d.velocity.ConvertTo<Vector3>() * m_Target.rb2d.velocity.magnitude / TargetDistance  / m_Parent.m_currentData.projectileSpeed;
+            Vector2 aimRotation = aimTarget - m_Parent.transform.position;
+            m_Parent.SetRotateInput(aimRotation);
             
             // Rotation
-            float targetAngle = Mathf.Atan2(m_TargetDirection.x, m_TargetDirection.y) * Mathf.Rad2Deg;
+            float targetAngle = Mathf.Atan2(aimRotation.x, aimRotation.y) * Mathf.Rad2Deg;
             m_Parent.SetRotateDirection(Quaternion.Euler(0, 0, -targetAngle));
             
             // Move direction

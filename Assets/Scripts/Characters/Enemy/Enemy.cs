@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Characters.Enemy
@@ -7,9 +8,11 @@ namespace Characters.Enemy
     {
         AI m_AI;
         [SerializeField] AIBehaviour m_AIData;
-        [SerializeField] Transform m_Target;
+        [SerializeField] Character m_Target;
         
-        [SerializeField] bool m_Debug;
+        [Header("Debug")]
+        [SerializeField] bool m_DebugRanges;
+        [SerializeField] bool m_DebugAIVision;
 
         protected override void Awake()
         {
@@ -79,16 +82,24 @@ namespace Characters.Enemy
 #if UNITY_EDITOR
         void OnDrawGizmos()
         {
-            if (!m_Debug) return;
-             
-            Gizmos.color = Color.red;
-            Gizmos.DrawSphere(transform.position, m_AIData.maxAttackDistance);
-             
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawSphere(transform.position, m_AIData.minTargetDistance);
-            
-            Gizmos.color = Color.green;
-            Gizmos.DrawSphere(transform.position, m_AIData.maxTargetDistance);
+            if (m_DebugRanges)
+
+            {
+                Gizmos.color = Color.red;
+                Gizmos.DrawSphere(transform.position, m_AIData.maxAttackDistance);
+                
+                Gizmos.color = Color.yellow;
+                Gizmos.DrawSphere(transform.position, m_AIData.minTargetDistance);
+                
+                Gizmos.color = Color.green;
+                Gizmos.DrawSphere(transform.position, m_AIData.maxTargetDistance);
+            }
+
+            if (m_DebugAIVision && m_AI != null)
+            {
+                Gizmos.color = Color.white;
+                Gizmos.DrawLine(transform.position, transform.position + m_AI.m_TargetDirection.ConvertTo<Vector3>());
+            }
         }
 #endif
     }
