@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 62148970}
   - component: {fileID: 62148972}
   m_Layer: 5
-  m_Name: zefzefzef
+  m_Name: Indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -158,7 +158,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 197, y: 299.05}
+  m_AnchoredPosition: {x: 0, y: 100}
   m_SizeDelta: {x: 181, y: 104}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &62148970
@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9137255, g: 0.24705882, b: 0.24705882, a: 0.28627452}
+  m_Color: {r: 0.9137255, g: 0.24705882, b: 0.24705882, a: 0.6509804}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -211,10 +211,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 429fbeff1b741604697dcf03f2306e09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 519420031}
-  canvasRect: {fileID: 1810569626}
+  m_MainCamera: {fileID: 519420031}
+  m_CanvasRect: {fileID: 1810569626}
   m_Target: {fileID: 96760425}
-  edgeOffset: 15
 --- !u!114 &96760425 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2583067209796993577, guid: e8100a897704d8949850881534943f03, type: 3}
@@ -1225,7 +1224,7 @@ PrefabInstance:
     - target: {fileID: 2272191894273668491, guid: e8100a897704d8949850881534943f03, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 66601c8c9edd982449f4b997036fd5d6, type: 3}
+      objectReference: {fileID: 21300000, guid: f644b74637abd71418d4cd84e8e9f8be, type: 3}
     - target: {fileID: 2583067209796993577, guid: e8100a897704d8949850881534943f03, type: 3}
       propertyPath: m_Debug
       value: 0
@@ -1239,13 +1238,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 884902488}
     - target: {fileID: 2583067209796993577, guid: e8100a897704d8949850881534943f03, type: 3}
+      propertyPath: damageableTag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2583067209796993577, guid: e8100a897704d8949850881534943f03, type: 3}
       propertyPath: m_DebugAIVision
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4070413845035945039, guid: e8100a897704d8949850881534943f03, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: bc493c1ce19906040a283e208b4392fc, type: 3}
+      objectReference: {fileID: 21300000, guid: 2820617a6503fe740af23e3caff607e9, type: 3}
     - target: {fileID: 4297845886293687447, guid: e8100a897704d8949850881534943f03, type: 3}
       propertyPath: m_Name
       value: Enemy

@@ -1,15 +1,20 @@
 using System;
 using Characters;
 using UnityEngine;
+using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class OffscreenIndicator : MonoBehaviour
 {
-    [SerializeField] UnityEngine.Camera mainCamera;
-    [SerializeField] RectTransform canvasRect;
+    [SerializeField] UnityEngine.Camera m_MainCamera;
+    [SerializeField] RectTransform m_CanvasRect;
     [SerializeField] Character m_Target;
     
-    RectTransform arrowRect;
+    RectTransform m_ArrowRect;
+    Image m_Icon;
     const float EdgeOffset = 20f;
+
+    Color m_IconColor;
 
     void Awake()
     {
@@ -18,39 +23,48 @@ public class OffscreenIndicator : MonoBehaviour
 
     public void Init()
     {
-        arrowRect = GetComponent<RectTransform>();
+        m_ArrowRect = GetComponent<RectTransform>();
+        m_Icon = GetComponent<Image>();
         m_Target.OnDie += () => Destroy(gameObject);
+        m_IconColor = m_Icon.color;
     }
 
-    void Update()
+    void OnGUI()
     {
-        Vector3 enemyViewportPos = mainCamera.WorldToViewportPoint(m_Target.transform.position);
+        Vector3 enemyViewportPos = m_MainCamera.WorldToViewportPoint(m_Target.transform.position);
 
         // Visible test
         if (enemyViewportPos.z > 0 && (enemyViewportPos.x < 0 || enemyViewportPos.x > 1 || enemyViewportPos.y < 0 || enemyViewportPos.y > 1))
         {
+            Vector3 cameraPos =
+                new Vector3(m_MainCamera.transform.position.x, m_MainCamera.transform.position.y, m_Target.transform.position.z);
+            float dist = Vector3.Distance(m_Target.transform.position, cameraPos);
+            m_IconColor.a = Mathf.InverseLerp(20f, 80f, dist);
+
             Vector3 arrowScreenPosition = FindEdgePosition(enemyViewportPos);
 
-            if (RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRect, arrowScreenPosition, null, out Vector2 localCanvasPos))
+            if (RectTransformUtility.ScreenPointToLocalPointInRectangle(m_CanvasRect, arrowScreenPosition, null, out Vector2 localCanvasPos))
             {
-                arrowRect.anchoredPosition = localCanvasPos;
+                m_ArrowRect.anchoredPosition = localCanvasPos;
 
                 // Rotate
-                Vector3 direction = (m_Target.transform.position - mainCamera.transform.position).normalized;
+                Vector3 direction = (m_Target.transform.position - m_MainCamera.transform.position).normalized;
                 float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-                arrowRect.rotation = Quaternion.Euler(0, 0, angle - 90);
+                m_ArrowRect.rotation = Quaternion.Euler(0, 0, angle - 90);
             }
         }
         else
         {
-            arrowRect.anchoredPosition = new Vector2(-9999, -9999);
+            m_IconColor.a = 0f;
         }
+
+        m_Icon.color = m_IconColor;
     }
 
     Vector3 FindEdgePosition(Vector3 viewportPos)
     {
         Vector3 edgePos = viewportPos;
-        
+
         bool isLeft = viewportPos.x < 0f;
         bool isRight = viewportPos.x > 1f;
         bool isBottom = viewportPos.y < 0f;
@@ -69,13 +83,14 @@ public class OffscreenIndicator : MonoBehaviour
             edgePos.x = Mathf.Clamp(viewportPos.x, EdgeOffset / Screen.width, 1f - EdgeOffset / Screen.width);
         }
         
-        Vector3 screenPos = mainCamera.ViewportToScreenPoint(edgePos);
+        Vector3 screenPos = m_MainCamera.ViewportToScreenPoint(edgePos);
 
         // Adjusts positions
         if (isLeft) screenPos.x = EdgeOffset;
         if (isRight) screenPos.x = Screen.width - EdgeOffset;
         if (isBottom) screenPos.y = EdgeOffset;
         if (isTop) screenPos.y = Screen.height - EdgeOffset;
+
 
         return screenPos;
     }
