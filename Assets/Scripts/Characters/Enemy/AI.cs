@@ -16,7 +16,7 @@ namespace Characters.Enemy
         Cooldown m_AttackTimer;
         Cooldown m_AttackPause;
 
-        public Vector2 m_TargetDirection;
+        public Vector2 m_Direction;
         bool m_TargetInAttackRange;
         bool m_TargetInRange;
         
@@ -41,7 +41,7 @@ namespace Characters.Enemy
             float speedMultiplier = Random.Range(0.7f, 1.3f);
             m_Parent.m_currentData.maxSpeed *= speedMultiplier;
             
-            ActionChecks();
+            MotionCalculations();
             Dash();
         }
 
@@ -51,28 +51,29 @@ namespace Characters.Enemy
             m_AttackPause.Update();
             m_AttackTimer.Update();
 
-            ActionChecks();
+            MotionCalculations();
         }
 
-        void ActionChecks()
+        void MotionCalculations()
         {
-            // Vector direction
-            Vector3 targetPosition = m_Target.transform.position + m_Target.rb2d.velocity.ConvertTo<Vector3>();
-            m_TargetDirection = targetPosition - m_Parent.transform.position;
+            // Calculate self direction
+            Vector3 targetPosition = m_Target.transform.position - (Vector3)m_Target.rb2d.velocity;
+            m_Direction = targetPosition - m_Parent.transform.position;
             
-            Vector3 aimTarget = m_Target.transform.position + m_Target.rb2d.velocity.ConvertTo<Vector3>() * m_Target.rb2d.velocity.magnitude / TargetDistance  / m_Parent.m_currentData.projectileSpeed;
+            // Calculate aim
+            Vector3 aimTarget = m_Target.transform.position + (Vector3)m_Target.rb2d.velocity * m_Target.rb2d.velocity.magnitude / TargetDistance  / m_Parent.m_currentData.projectileSpeed;
             Vector2 aimRotation = aimTarget - m_Parent.transform.position;
             m_Parent.SetRotateInput(aimRotation);
             
-            // Rotation
+            // Set rotation
             float targetAngle = Mathf.Atan2(aimRotation.x, aimRotation.y) * Mathf.Rad2Deg;
             m_Parent.SetRotateDirection(Quaternion.Euler(0, 0, -targetAngle));
             
             // Move direction
             if (TargetDistance > m_AIData.maxTargetDistance)
-                m_Parent.m_MoveDirection = m_TargetDirection.normalized;
+                m_Parent.m_MoveDirection = m_Direction.normalized;
             else if (TargetDistance < m_AIData.minTargetDistance)
-                m_Parent.m_MoveDirection = -m_TargetDirection.normalized;
+                m_Parent.m_MoveDirection = -m_Direction.normalized;
             
             // Move distance
             if (TargetDistance < m_AIData.maxTargetDistance && TargetDistance > m_AIData.minTargetDistance && !m_TargetInRange)
@@ -86,7 +87,6 @@ namespace Characters.Enemy
             else if (TargetDistance > m_AIData.maxAttackDistance && m_TargetInAttackRange)
                 OnTargetLeftAttackRange();
         }
-
         
         #region movement
         void OnTargetInRange()

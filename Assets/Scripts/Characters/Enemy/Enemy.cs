@@ -98,7 +98,9 @@ namespace Characters.Enemy
             if (m_DebugAIVision && m_AI != null)
             {
                 Gizmos.color = Color.white;
-                Gizmos.DrawLine(transform.position, transform.position + m_AI.m_TargetDirection.ConvertTo<Vector3>());
+                Gizmos.DrawLine(transform.position, transform.position + (Vector3)m_AI.m_Direction);
+                Gizmos.color = Color.yellow;
+                Gizmos.DrawLine(transform.position, transform.position + (Vector3)rb2d.velocity);
             }
         }
 #endif
