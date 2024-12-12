@@ -18,7 +18,7 @@ namespace Characters.Enemy
         {
             base.Awake();
             m_AI = new AI(this, m_Target, m_AIData);
-            m_Tag = IDamageable.DamageableTag.Enemy;
+            damageableTag = IDamageable.DamageableTag.Enemy;
         }
 
         void Start()

@@ -18,7 +18,7 @@ namespace Characters.Player
         {
             base.Awake();
             m_InputManager = new InputManager(this);
-            m_Tag = IDamageable.DamageableTag.Player;
+            damageableTag = IDamageable.DamageableTag.Player;
         }
 
         public override void Attack()

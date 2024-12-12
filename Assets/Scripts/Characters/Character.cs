@@ -2,15 +2,17 @@ using System;
 using Characters.Projectiles;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Utilities;
 
 namespace Characters
 {
     public class Character : MonoBehaviour, IDamageable
     {
-        public IDamageable.DamageableTag m_Tag;
+        public IDamageable.DamageableTag damageableTag;
 
         public event Action<Vector2> OnChangePosition;
+        public event Action OnDie;
 
         public Rigidbody2D rb2d;
         [SerializeField] CharacterData m_InitialData;
@@ -105,7 +107,7 @@ namespace Characters
 
             if (!m_InvincibilityCooldown.HasEnded)
             {
-                print(gameObject.name + " : NO DAMAGE TAKEN");
+                //print(gameObject.name + " : NO DAMAGE TAKEN");
                 return;
             }
             
@@ -115,15 +117,18 @@ namespace Characters
             if (m_currentData.health <= 0) Die();
         }
         
-        public IDamageable.DamageableTag GetTag() { return m_Tag; }
+        public IDamageable.DamageableTag GetTag() { return damageableTag; }
 
         protected virtual void OnDashRecovered()
         {
-            Debug.Log(gameObject.name + " : Dash recovered");
+            //Debug.Log(gameObject.name + " : Dash recovered");
         }
         
         protected virtual void OnAttackRecovered() { }
 
-        public virtual void Die() { }
+        public virtual void Die()
+        {
+            OnDie?.Invoke();
+        }
     }
 }

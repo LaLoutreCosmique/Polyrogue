@@ -57,7 +57,7 @@ namespace Characters.Enemy
         void MotionCalculations()
         {
             // Calculate self direction
-            Vector3 targetPosition = m_Target.transform.position - (Vector3)m_Target.rb2d.velocity;
+            Vector3 targetPosition = m_Target.transform.position;
             m_Direction = targetPosition - m_Parent.transform.position;
             
             // Calculate aim

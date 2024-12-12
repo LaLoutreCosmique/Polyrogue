@@ -29,7 +29,7 @@ namespace Characters.Projectiles
             IDamageable target = other.GetComponent<IDamageable>();
             if (target == null) return;
             IDamageable.DamageableTag targetTag = target.GetTag();
-            if (targetTag == m_Sender.m_Tag || targetTag == IDamageable.DamageableTag.Projectile) return;
+            if (targetTag == m_Sender.damageableTag || targetTag == IDamageable.DamageableTag.Projectile) return;
 
             target.Hurt(m_Damage, m_Knockback, m_Direction);
             Destroy(gameObject);

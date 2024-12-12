@@ -8,7 +8,7 @@ namespace Characters
 
         public IDamageable.DamageableTag GetTag()
         {
-            return m_Parent.m_Tag;
+            return m_Parent.damageableTag;
         }
 
         public void Hurt(int damage, float knockbackForce, Vector2 knockbackDir)
@@ -17,7 +17,7 @@ namespace Characters
 
             if (!m_Parent.m_InvincibilityCooldown.HasEnded)
             {
-                print("NO DAMAGE TAKEN!");
+                //print("NO DAMAGE TAKEN!");
                 return;
             }
             
