@@ -114,6 +114,9 @@ namespace Characters
             m_currentData.health -= damage;
             m_InvincibilityCooldown.Start();
 
+            print(gameObject.name + " : OOF - " + m_currentData.health);
+            print(gameObject.name + " : OOF - " + m_currentData.shieldHealth);
+            
             if (m_currentData.health <= 0) Die();
         }
         

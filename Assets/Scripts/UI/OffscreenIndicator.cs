@@ -25,7 +25,7 @@ public class OffscreenIndicator : MonoBehaviour
     {
         m_ArrowRect = GetComponent<RectTransform>();
         m_Icon = GetComponent<Image>();
-        m_Target.OnDie += () => Destroy(gameObject);
+        m_Target.OnDie += Destroy;
         m_IconColor = m_Icon.color;
     }
 
@@ -39,7 +39,7 @@ public class OffscreenIndicator : MonoBehaviour
             Vector3 cameraPos =
                 new Vector3(m_MainCamera.transform.position.x, m_MainCamera.transform.position.y, m_Target.transform.position.z);
             float dist = Vector3.Distance(m_Target.transform.position, cameraPos);
-            m_IconColor.a = Mathf.InverseLerp(20f, 80f, dist);
+            m_IconColor.a = Mathf.InverseLerp(20f, 150f, dist);
 
             Vector3 arrowScreenPosition = FindEdgePosition(enemyViewportPos);
 
@@ -91,7 +91,12 @@ public class OffscreenIndicator : MonoBehaviour
         if (isBottom) screenPos.y = EdgeOffset;
         if (isTop) screenPos.y = Screen.height - EdgeOffset;
 
-
         return screenPos;
+    }
+
+    void Destroy()
+    {
+        m_Target.OnDie -= Destroy;
+        Destroy(gameObject);
     }
 }

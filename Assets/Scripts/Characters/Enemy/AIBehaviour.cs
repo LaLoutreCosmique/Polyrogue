@@ -35,7 +35,7 @@ namespace Characters.Enemy
             AIBehaviour data = (AIBehaviour)target;
             
             EditorGUILayout.LabelField("Behaviour selection", EditorStyles.boldLabel);
-
+            
             data.canMove = EditorGUILayout.Toggle("Can Move", data.canMove);
             if (data.canMove)
             {

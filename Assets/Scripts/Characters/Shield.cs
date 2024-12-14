@@ -17,9 +17,12 @@ namespace Characters
 
             if (!m_Parent.m_InvincibilityCooldown.HasEnded)
             {
-                //print("NO DAMAGE TAKEN!");
+                //print(m_Parent.name + " : NO DAMAGE TAKEN!");
                 return;
             }
+            
+            print(gameObject.name + " : OOF - " + m_Parent.m_currentData.health);
+            print(gameObject.name + " : OOF - " + m_Parent.m_currentData.shieldHealth);
             
             m_Parent.m_currentData.shieldHealth -= damage;
             m_Parent.m_InvincibilityCooldown.Start();
