@@ -9,7 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 032ad63a308f4fc49b45854ed00065e0, type: 3}
-  m_Name: TestWave001
+  m_Script: {fileID: 11500000, guid: b006059bfd4454b499ba013b57329908, type: 3}
+  m_Name: TestWaveDatabase
   m_EditorClassIdentifier: 
-  waves: []
+  data:
+  - {fileID: 11400000, guid: 024517dc85a96da4196b61c10c4175fb, type: 2}
+  - {fileID: 11400000, guid: 6ab41b00b34825f4f944c905ae3e55ff, type: 2}

@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69ac8de1a5187764580682c044231e47, type: 3}
   m_Name: AttackerData
   m_EditorClassIdentifier: 
-  acceleration: 50
-  maxSpeed: 20
+  acceleration: 20
+  maxSpeed: 10
   dashForce: 10
   dashCooldown: 1
   dashDuration: 0.5
   health: 2
   shieldHealth: 2
-  takenKnockbackMultiplier: 0
-  invincibilityDuration: 2
+  takenKnockbackMultiplier: 1
+  invincibilityDuration: 0
   attackCooldown: 0.4
   attackDamage: 1
   attackSize: 1

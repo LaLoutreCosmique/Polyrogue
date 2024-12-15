@@ -21,9 +21,6 @@ namespace Characters
                 return;
             }
             
-            print(gameObject.name + " : OOF - " + m_Parent.m_currentData.health);
-            print(gameObject.name + " : OOF - " + m_Parent.m_currentData.shieldHealth);
-            
             m_Parent.m_currentData.shieldHealth -= damage;
             m_Parent.m_InvincibilityCooldown.Start();
             

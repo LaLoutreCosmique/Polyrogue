@@ -12,7 +12,7 @@ namespace Characters
         public IDamageable.DamageableTag damageableTag;
 
         public event Action<Vector2> OnChangePosition;
-        public event Action OnDie;
+        public event Action<Character> OnDie;
 
         public Rigidbody2D rb2d;
         [SerializeField] CharacterData m_InitialData;
@@ -113,9 +113,6 @@ namespace Characters
             
             m_currentData.health -= damage;
             m_InvincibilityCooldown.Start();
-
-            print(gameObject.name + " : OOF - " + m_currentData.health);
-            print(gameObject.name + " : OOF - " + m_currentData.shieldHealth);
             
             if (m_currentData.health <= 0) Die();
         }
@@ -131,7 +128,7 @@ namespace Characters
 
         public virtual void Die()
         {
-            OnDie?.Invoke();
+            OnDie?.Invoke(this);
         }
     }
 }

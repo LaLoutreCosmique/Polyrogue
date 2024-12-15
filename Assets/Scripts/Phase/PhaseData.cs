@@ -9,6 +9,7 @@ namespace Phase
     public class PhaseData : ScriptableObject
     {
         public Wave[] waves;
+        //TODO possible abilities
     }
 
     [System.Serializable]

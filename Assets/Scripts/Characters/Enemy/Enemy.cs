@@ -8,28 +8,26 @@ namespace Characters.Enemy
     {
         AI m_AI;
         [SerializeField] AIBehaviour m_AIData;
-        [SerializeField] Character m_Target;
+        Character m_Target;
         
         [Header("Debug")]
         [SerializeField] bool m_DebugRanges;
         [SerializeField] bool m_DebugAIVision;
 
-        protected override void Awake()
+        public void Init(Character target)
         {
+            m_Target = target;
+            
             base.Awake();
             m_AI = new AI(this, m_Target, m_AIData);
             damageableTag = IDamageable.DamageableTag.Enemy;
-        }
-
-        void Start()
-        {
             m_AI.Start();
         }
 
         protected override void Update()
         {
             base.Update();
-            m_AI.Update();
+            m_AI?.Update();
         }
         
         public override void Die()
