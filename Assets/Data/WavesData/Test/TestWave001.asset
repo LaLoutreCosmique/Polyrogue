@@ -19,7 +19,7 @@ MonoBehaviour:
     waitForNext: 0
     timeBeforeNext: 3
   - enemyGo: {fileID: 4297845886293687447, guid: 7affbf5b90ea2f540b028f57543def0e, type: 3}
-    amount: 20
+    amount: 5
     spawnCooldown: 0.5
     waitForNext: 0
     timeBeforeNext: 0
