@@ -97,12 +97,15 @@ namespace Characters
                 m_DashCooldown.Start();
 
             m_DashDurationCooldown.Start();
+            
             rb2d.AddForce(dashDirection * m_currentData.dashForce, ForceMode2D.Impulse);
         }
         
 
         public void Hurt(int damage, float knockbackForce, Vector2 knockbackDir)
         {
+            if (m_currentData.shieldHealth != 0) return;
+            
             rb2d.AddForce(knockbackDir * (knockbackForce * m_currentData.takenKnockbackMultiplier), ForceMode2D.Impulse);
 
             if (!m_InvincibilityCooldown.HasEnded)

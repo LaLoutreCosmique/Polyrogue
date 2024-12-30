@@ -53,12 +53,25 @@ namespace Characters.Enemy
 
         void MotionCalculations()
         {
-            // Calculate self direction
-            Vector3 targetPosition = m_Target.transform.position;
-            m_Direction = targetPosition - m_Parent.transform.position;
+            // Calculate move direction
+            Vector2 selfPos = m_Parent.transform.position;
+            Vector2 targetPos = m_Target.transform.position;
+            Vector2 targetDir = targetPos - selfPos;
+
+            Vector2 normal = new Vector2(-targetDir.y, targetDir.x).normalized;
             
-            // Calculate aim
-            Vector3 aimTarget = m_Target.transform.position + (Vector3)m_Target.rb2d.velocity * m_Target.rb2d.velocity.magnitude / TargetDistance  / m_Parent.m_currentData.projectileSpeed;
+            Vector2 velocity = m_Parent.rb2d.velocity;
+            Vector2 reflectedVelocity = Vector2.Reflect(velocity, normal);
+
+            Vector2 directionToTarget = targetDir.normalized;
+
+            m_Direction = Vector2.Dot(reflectedVelocity, directionToTarget) < 0 || m_Parent.rb2d.velocity.magnitude < 0.01f
+                ? directionToTarget
+                : reflectedVelocity.normalized;
+
+            // Calculate aim rotation
+            Vector3 targetVel = m_Target.rb2d.velocity;
+            Vector3 aimTarget = m_Target.transform.position + targetVel * targetVel.magnitude / TargetDistance  / m_Parent.m_currentData.projectileSpeed;
             Vector2 aimRotation = aimTarget - m_Parent.transform.position;
             m_Parent.SetRotateInput(aimRotation);
             
@@ -66,7 +79,7 @@ namespace Characters.Enemy
             float targetAngle = Mathf.Atan2(aimRotation.x, aimRotation.y) * Mathf.Rad2Deg;
             m_Parent.SetRotateDirection(Quaternion.Euler(0, 0, -targetAngle));
             
-            // Move direction
+            // Set move direction
             if (TargetDistance > m_AIData.maxTargetDistance)
                 m_Parent.m_MoveDirection = m_Direction.normalized;
             else if (TargetDistance < m_AIData.minTargetDistance)

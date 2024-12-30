@@ -59,7 +59,6 @@ public class GameManager : MonoBehaviour
         {
             for (int j = 0; j < waves[i].amount; j++)
             {
-                print("Spawn : " + waves[i].enemyGo.name);
                 Enemy newEnemy = Instantiate(waves[i].enemyGo, GetEnemySpawnPosition(), Quaternion.identity).GetComponent<Enemy>();
                 newEnemy.Init(m_Player);
                 newEnemy.OnDie += OnEnemyDied;

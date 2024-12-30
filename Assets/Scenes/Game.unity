@@ -279,7 +279,7 @@ Camera:
   far clip plane: 1000
   field of view: 50
   orthographic: 1
-  orthographic size: 20
+  orthographic size: 15
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -535,7 +535,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 884902483}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -715,8 +715,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Player: {fileID: 884902488}
   m_Offset: {x: 0, y: 0, z: -1}
-  m_SmoothSpeed: 5
-  m_DirectionOffset: 5
+  m_SmoothSpeed: 4
+  m_DirectionOffset: 7
 --- !u!4 &1169021868
 Transform:
   m_ObjectHideFlags: 0
@@ -917,7 +917,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1575430650}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AttackerData
   m_EditorClassIdentifier: 
   acceleration: 20
-  maxSpeed: 10
+  maxSpeed: 15
   dashForce: 10
   dashCooldown: 1
   dashDuration: 0.5

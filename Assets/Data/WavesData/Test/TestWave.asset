@@ -9,8 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b006059bfd4454b499ba013b57329908, type: 3}
-  m_Name: TestWaveDatabase
+  m_Script: {fileID: 11500000, guid: 032ad63a308f4fc49b45854ed00065e0, type: 3}
+  m_Name: TestWave
   m_EditorClassIdentifier: 
-  data:
-  - {fileID: 11400000, guid: 3a72e1f845b9f654ab0b085da0b06048, type: 2}
+  waves:
+  - enemyGo: {fileID: 4297845886293687447, guid: e8100a897704d8949850881534943f03, type: 3}
+    amount: 1
+    spawnCooldown: 0
+    waitForNext: 0
+    timeBeforeNext: 3

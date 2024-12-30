@@ -135,7 +135,6 @@ MonoBehaviour:
   m_RotateInput: {x: 0, y: 0}
   m_MoveDirection: {x: 0, y: 0}
   m_AIData: {fileID: 11400000, guid: 19b142dd51e216140ba34d4e384e960c, type: 2}
-  m_Target: {fileID: 0}
   m_DebugRanges: 0
   m_DebugAIVision: 0
 --- !u!60 &7817613217035217286
