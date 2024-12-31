@@ -21,7 +21,7 @@ MonoBehaviour:
   shieldHealth: 2
   takenKnockbackMultiplier: 0.7
   invincibilityDuration: 0
-  attackCooldown: 0.4
+  attackCooldown: 0.7
   attackDamage: 1
   attackSize: 1
   attackKnockback: 10

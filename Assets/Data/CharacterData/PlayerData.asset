@@ -18,10 +18,10 @@ MonoBehaviour:
   dashCooldown: 1
   dashDuration: 0.2
   health: 1
-  shieldHealth: 1
-  takenKnockbackMultiplier: 1
+  shieldHealth: 1000
+  takenKnockbackMultiplier: 0
   invincibilityDuration: 3
-  attackCooldown: 0.5
+  attackCooldown: 0.3
   attackDamage: 1
   attackSize: 1
   attackKnockback: 5
