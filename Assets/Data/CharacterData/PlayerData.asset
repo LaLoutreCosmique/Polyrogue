@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69ac8de1a5187764580682c044231e47, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  acceleration: 30
+  acceleration: 25
   maxSpeed: 15
   dashForce: 10
   dashCooldown: 1
   dashDuration: 0.2
   health: 1
-  shieldHealth: 3
+  shieldHealth: 1
   takenKnockbackMultiplier: 1
   invincibilityDuration: 3
-  attackCooldown: 0.2
+  attackCooldown: 0.5
   attackDamage: 1
   attackSize: 1
-  attackKnockback: 15
-  projectileSpeed: 2
+  attackKnockback: 5
+  projectileSpeed: 1

@@ -94,7 +94,7 @@ public class GameManager : MonoBehaviour
         m_EnemiesLeft--;
         enemy.OnDie -= OnEnemyDied;
 
-        print(m_EnemiesLeft);
+        print("Enemies left : " + m_EnemiesLeft);
         
         // Phase complete
         if (!m_IsSpawning && m_EnemiesLeft == 0) StartPhase();

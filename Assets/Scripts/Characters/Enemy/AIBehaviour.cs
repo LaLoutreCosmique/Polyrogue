@@ -76,6 +76,8 @@ namespace Characters.Enemy
                 data.dashMaxWaitingTime = EditorGUILayout.FloatField("Dash Max Waiting Time", data.dashMaxWaitingTime);
                 data.dashMaxWaitingTime = Mathf.Clamp(data.dashMaxWaitingTime, data.dashMinWaitingTime, Mathf.Infinity);
             }
+            
+            EditorUtility.SetDirty(this);
         }
     }
     #endif

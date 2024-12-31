@@ -1,6 +1,7 @@
 using Characters.Player.Inputs;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Characters.Player
 {
@@ -64,7 +65,8 @@ namespace Characters.Player
         public override void Die()
         {
             base.Die();
-            print("Oh non je suis mort");
+            m_InputManager.DisableInputs();
+            SceneManager.LoadScene("Scenes/Death");
         }
 
 #if UNITY_EDITOR
