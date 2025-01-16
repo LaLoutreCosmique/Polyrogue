@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c61406019f9e844c86d8a88a3649ffc, type: 3}
   m_Name: BasicEnemyAI
   m_EditorClassIdentifier: 
-  rotationSpeed: 0
-  goToTarget: 0
-  minDistance: 0
-  maxDistance: 0
-  canShoot: 0
-  timedShots: 0
-  shotsDuration: 0
-  shotsPauseDuration: 0
+  canMove: 1
+  minTargetDistance: 5
+  maxTargetDistance: 70
+  canAttack: 1
+  maxAttackDistance: 100
+  timedAttacks: 0
+  attackDuration: 0
+  attackPauseDuration: 0
   canDash: 0
   doLateralDash: 0
   dashMinWaitingTime: 0

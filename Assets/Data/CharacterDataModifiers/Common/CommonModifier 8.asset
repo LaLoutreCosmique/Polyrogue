@@ -10,34 +10,34 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 69ac8de1a5187764580682c044231e47, type: 3}
-  m_Name: AttackerData
+  m_Name: CommonModifier 8
   m_EditorClassIdentifier: 
-  isModifier: 0
-  acceleration: 20
-  accelerationType: 0
-  maxSpeed: 15
-  maxSpeedType: 0
-  dashForce: 10
-  dashForceType: 0
-  dashCooldown: 1
-  dashCooldownType: 0
-  dashDuration: 0.5
+  isModifier: 1
+  acceleration: 0
+  accelerationType: 1
+  maxSpeed: 0
+  maxSpeedType: 1
+  dashForce: 0
+  dashForceType: 1
+  dashCooldown: 0
+  dashCooldownType: 1
+  dashDuration: 0
   dashDurationType: 0
-  health: 2
+  health: 0
   healthType: 0
-  shieldHealth: 2
+  shieldHealth: 0
   shieldHealthType: 0
   suddenKnockbackMultiplier: 0
-  suddenKnockbackMultiplierType: 0
+  suddenKnockbackMultiplierType: 1
   invincibilityDuration: 0
   invincibilityDurationType: 0
-  attackCooldown: 0.7
+  attackCooldown: 0
   attackCooldownType: 0
-  attackDamage: 1
+  attackDamage: 0
   attackDamageType: 0
-  attackSize: 1
-  attackSizeType: 0
-  attackKnockback: 10
-  attackKnockbackType: 0
-  projectileSpeed: 1.5
-  projectileSpeedType: 0
+  attackSize: 0
+  attackSizeType: 1
+  attackKnockback: 0
+  attackKnockbackType: 1
+  projectileSpeed: 1.15
+  projectileSpeedType: 1

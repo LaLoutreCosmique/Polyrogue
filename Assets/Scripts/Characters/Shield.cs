@@ -13,7 +13,7 @@ namespace Characters
 
         public void Hurt(int damage, float knockbackForce, Vector2 knockbackDir)
         {
-            m_Parent.rb2d.AddForce(knockbackDir * (knockbackForce * m_Parent.m_currentData.takenKnockbackMultiplier), ForceMode2D.Impulse);
+            m_Parent.rb2d.AddForce(knockbackDir * (knockbackForce * m_Parent.m_currentData.suddenKnockbackMultiplier), ForceMode2D.Impulse);
 
             if (!m_Parent.m_InvincibilityCooldown.HasEnded)
             {

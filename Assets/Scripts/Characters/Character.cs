@@ -103,7 +103,7 @@ namespace Characters
         {
             if (m_currentData.shieldHealth > 0) return;
             
-            rb2d.AddForce(knockbackDir * (knockbackForce * m_currentData.takenKnockbackMultiplier), ForceMode2D.Impulse);
+            rb2d.AddForce(knockbackDir * (knockbackForce * m_currentData.suddenKnockbackMultiplier), ForceMode2D.Impulse);
 
             if (!m_InvincibilityCooldown.HasEnded)
             {

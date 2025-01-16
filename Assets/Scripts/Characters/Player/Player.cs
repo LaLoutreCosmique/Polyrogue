@@ -1,6 +1,5 @@
 using System.Collections;
 using Characters.Player.Inputs;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -64,31 +63,10 @@ namespace Characters.Player
             m_RotateDirection = Quaternion.Euler(0, 0, -targetAngle);
         }
 
-        public override void OnTakeDamage()
-        {
-            base.OnTakeDamage();
-            
-            StartCoroutine(RumbleTest());   
-        }
-
-        IEnumerator RumbleTest()
-        {
-            Gamepad.current.SetMotorSpeeds(0.3f, 0.3f);
-            yield return new WaitForSeconds(.1f);
-            StopRumble();
-        }
-
-        void StopRumble()
-        {
-            Gamepad.current.SetMotorSpeeds(0f, 0f);
-        }
-
         public override void Die()
         {
             base.Die();
             m_InputManager.DisableInputs();
-            StopAllCoroutines();
-            StopRumble();
             SceneManager.LoadScene("Scenes/Death");
         }
 
@@ -103,7 +81,7 @@ namespace Characters.Player
 
             if (m_DebugVelocity)
             {
-                Gizmos.DrawLine(transform.position, transform.position + rb2d.velocity.ConvertTo<Vector3>());
+                Gizmos.DrawLine(transform.position, transform.position + (Vector3)rb2d.velocity);
             }
         }
 #endif
