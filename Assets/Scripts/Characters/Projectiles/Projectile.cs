@@ -21,6 +21,8 @@ namespace Characters.Projectiles
             m_Speed = projectileSpeed;
             m_Damage = sender.m_currentData.attackDamage;
             m_Knockback = sender.m_currentData.attackKnockback;
+
+            GetComponent<SpriteRenderer>().color = sender.GetComponent<SpriteRenderer>().color;
         }
 
         void OnTriggerEnter2D(Collider2D other)

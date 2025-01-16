@@ -10,8 +10,7 @@ namespace Characters
     public class Character : MonoBehaviour, IDamageable
     {
         public IDamageable.DamageableTag damageableTag;
-
-        public event Action<Vector2> OnChangePosition;
+        
         public event Action<Character> OnDie;
 
         public Rigidbody2D rb2d;
@@ -49,8 +48,6 @@ namespace Characters
         
         void FixedUpdate()
         {
-            if (rb2d.velocity.magnitude > 0.2f) OnChangePosition?.Invoke(transform.position);
-            
             transform.rotation = m_RotateDirection;
             
             if (!m_DashDurationCooldown.HasEnded) return;
@@ -104,7 +101,7 @@ namespace Characters
 
         public void Hurt(int damage, float knockbackForce, Vector2 knockbackDir)
         {
-            if (m_currentData.shieldHealth != 0) return;
+            if (m_currentData.shieldHealth > 0) return;
             
             rb2d.AddForce(knockbackDir * (knockbackForce * m_currentData.takenKnockbackMultiplier), ForceMode2D.Impulse);
 
@@ -116,9 +113,12 @@ namespace Characters
             
             m_currentData.health -= damage;
             m_InvincibilityCooldown.Start();
+            OnTakeDamage();
             
             if (m_currentData.health <= 0) Die();
         }
+
+        public virtual void OnTakeDamage() { }
         
         public IDamageable.DamageableTag GetTag() { return damageableTag; }
 

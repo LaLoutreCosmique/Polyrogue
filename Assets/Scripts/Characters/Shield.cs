@@ -23,6 +23,7 @@ namespace Characters
             
             m_Parent.m_currentData.shieldHealth -= damage;
             m_Parent.m_InvincibilityCooldown.Start();
+            m_Parent.OnTakeDamage();
             
             if (m_Parent.m_currentData.shieldHealth <= 0) Die();
         }
