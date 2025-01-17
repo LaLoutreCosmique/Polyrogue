@@ -14,7 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waves:
   - enemyGo: {fileID: 4297845886293687447, guid: 7affbf5b90ea2f540b028f57543def0e, type: 3}
-    amount: 5
+    amount: 1
     spawnCooldown: 1
     waitForNext: 0
-    timeBeforeNext: 3
+    timeBeforeNext: 0
+  - enemyGo: {fileID: 4297845886293687447, guid: e8100a897704d8949850881534943f03, type: 3}
+    amount: 1
+    spawnCooldown: 1
+    waitForNext: 0
+    timeBeforeNext: 0

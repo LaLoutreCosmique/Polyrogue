@@ -5,7 +5,7 @@ namespace Characters.Player.Upgrade
     [CreateAssetMenu(menuName = "Polyrogue/UpgradeCard/UpgradeCardData", fileName = "New Upgrade Card Data")]
     public class UpgradeCardData : ScriptableObject
     {
-        public string name;
+        public string cardName;
         public string description;
         public CharacterData modifier;
         public SpecialUpgrade[] special;
@@ -23,6 +23,6 @@ namespace Characters.Player.Upgrade
 
     public enum SpecialUpgradeType
     {
-        UltimateSpammer
+        SpamAttack
     }
 }

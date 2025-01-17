@@ -5,7 +5,7 @@ using Characters.Player;
 using Phase;
 using UI;
 using UnityEngine;
-using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,15 +17,19 @@ public class GameManager : MonoBehaviour
     bool m_IsSpawning;
     [SerializeField] PhaseDatabase m_Phases;
     [SerializeField] float m_SpawnDistanceFromPlayer;
+    [SerializeField] UpgradeState upState;
 
     [Header("Offscreen indicator ref")]
     [SerializeField] GameObject m_IndicatorGo;
     [SerializeField] RectTransform m_IndicatorContainer;
     [SerializeField] UnityEngine.Camera m_Camera;
 
+    bool freezeTime;
+    float freezeSpeed = 5f;
+
     //TODO Yes, it's my TODO list. :)
     
-    //TODO enemy apparition
+    //TODO upgrade cards
     //TODO projectile factory pattern?
     //TODO projectile + indicator pool pattern
     //TODO new projectiles (seeker, bomb, laser, inversed bomb)
@@ -34,14 +38,31 @@ public class GameManager : MonoBehaviour
     //TODO better aim enemy AI
     //TODO better movement enemy AI
 
-    void Start()
+    void Awake()
     {
-        StartPhase();
+        upState.Init(m_Player);
+        upState.OnFinishState += StartPlayState;
     }
 
-    void StartPhase()
+    void Start()
     {
+        StartPlayState();
+    }
+
+    void Update()
+    {
+        if (freezeTime && Time.timeScale > 0.005f)
+            Time.timeScale -= Time.deltaTime * freezeSpeed;
+        else if (!freezeTime && Time.timeScale < 1f)
+            Time.timeScale += Time.deltaTime * freezeSpeed;
         
+        if (Input.GetKeyDown(KeyCode.U))
+            StartUpgradeState();
+    }
+
+    void StartPlayState()
+    {
+        freezeTime = false;
         // No more phases : level complete
         if (m_PhaseCount == m_Phases.data.Count) return;
         
@@ -97,6 +118,12 @@ public class GameManager : MonoBehaviour
         print("Enemies left : " + m_EnemiesLeft);
         
         // Phase complete
-        if (!m_IsSpawning && m_EnemiesLeft == 0) StartPhase();
+        if (!m_IsSpawning && m_EnemiesLeft == 0) StartUpgradeState();
+    }
+
+    void StartUpgradeState()
+    {
+        freezeTime = true;
+        upState.StartState();
     }
 }

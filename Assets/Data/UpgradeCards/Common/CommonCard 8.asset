@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 09f6f13b4f0106441be93279a90217b8, type: 3}
-  m_Name: CommonCard 0
+  m_Name: CommonCard 8
   m_EditorClassIdentifier: 
-  cardName: SWEET NOT BUSY
-  description: 'Acceleration : +20%'
-  modifier: {fileID: 11400000, guid: 948741f13f8f9c54db810a8b5cd63a5e, type: 2}
+  cardName: CRAZY FROG
+  description: 'Projectile speed : +15%'
+  modifier: {fileID: 11400000, guid: 1687568274479604696512610122023f, type: 2}
   special: []

@@ -12,17 +12,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69ac8de1a5187764580682c044231e47, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
+  isModifier: 0
   acceleration: 15
+  accelerationType: 0
   maxSpeed: 10
+  maxSpeedType: 0
   dashForce: 10
+  dashForceType: 0
   dashCooldown: 5
+  dashCooldownType: 0
   dashDuration: 0.2
+  dashDurationType: 0
   health: 1
+  healthType: 0
   shieldHealth: 2
-  takenKnockbackMultiplier: 1
-  invincibilityDuration: 2
+  shieldHealthType: 0
+  suddenKnockbackMultiplier: 0
+  suddenKnockbackMultiplierType: 0
+  invincibilityDuration: 100000
+  invincibilityDurationType: 0
   attackCooldown: 0.5
+  attackCooldownType: 0
   attackDamage: 1
+  attackDamageType: 0
   attackSize: 1
+  attackSizeType: 0
   attackKnockback: 5
+  attackKnockbackType: 0
   projectileSpeed: 1
+  projectileSpeedType: 0

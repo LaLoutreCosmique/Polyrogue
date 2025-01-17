@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09f6f13b4f0106441be93279a90217b8, type: 3}
   m_Name: CommonCard 1
   m_EditorClassIdentifier: 
-  name: PATATAS BRAVAS
+  cardName: PATATAS BRAVAS
   description: 'Max speed : +18%'
   modifier: {fileID: 11400000, guid: 08cbdc4aed413b5479470a58a242ac60, type: 2}
   special: []

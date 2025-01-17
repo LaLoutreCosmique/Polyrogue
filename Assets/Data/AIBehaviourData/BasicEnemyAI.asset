@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: BasicEnemyAI
   m_EditorClassIdentifier: 
   canMove: 1
-  minTargetDistance: 5
-  maxTargetDistance: 70
+  minTargetDistance: 0
+  maxTargetDistance: 0
   canAttack: 1
   maxAttackDistance: 100
   timedAttacks: 0

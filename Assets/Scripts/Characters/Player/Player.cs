@@ -63,6 +63,16 @@ namespace Characters.Player
             m_RotateDirection = Quaternion.Euler(0, 0, -targetAngle);
         }
 
+        public void EnableInput()
+        {
+            m_InputManager.EnableInputs();
+        }
+        
+        public void DisableInput()
+        {
+            m_InputManager.DisableInputs();
+        }
+
         public override void Die()
         {
             base.Die();
