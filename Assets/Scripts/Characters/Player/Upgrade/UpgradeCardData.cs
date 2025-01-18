@@ -7,7 +7,7 @@ namespace Characters.Player.Upgrade
     {
         public string cardName;
         public string description;
-        public CharacterData modifier;
+        public CharacterDataModifier modifier;
         public SpecialUpgrade[] special;
         
         [System.Serializable]

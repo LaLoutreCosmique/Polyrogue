@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: BAMBALOMBOS
   description: 'Dash duration : +0,1s'
-  modifier: {fileID: 11400000, guid: da1cf66cdeb06284aa615f61ab067ed3, type: 2}
+  modifier: {fileID: 11400000, guid: 6e1ea040e6fde2f4da72d442ab4becba, type: 2}
   special: []

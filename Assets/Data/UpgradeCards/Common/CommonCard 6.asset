@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: BOILER ALERT
   description: 'Projectile size : +10%'
-  modifier: {fileID: 11400000, guid: a668e6c1949a5ee41a16760b619f1ccc, type: 2}
+  modifier: {fileID: 11400000, guid: bec4ccddc4b94ee428cfc80e2ca5e7d3, type: 2}
   special: []

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: I LOVE RATATOUILLE
   description: 'Invicibility : +0,5s'
-  modifier: {fileID: 11400000, guid: 8188138d2dc4e5f4b8492b02443c33ff, type: 2}
+  modifier: {fileID: 11400000, guid: 680de9acd8ac45a4a8e8cf70bb712baa, type: 2}
   special: []

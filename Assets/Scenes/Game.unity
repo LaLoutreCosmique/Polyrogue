@@ -530,7 +530,6 @@ MonoBehaviour:
   rb2d: {fileID: 884902485}
   m_InitialData: {fileID: 11400000, guid: a9a3dbe440f42bc45938fc383e0a60dd, type: 2}
   m_ProjectilePrefab: {fileID: 3940220184444987441, guid: 0bd75a5f50ed86d438d7d26fcb4e61d0, type: 3}
-  m_currentData: {fileID: 0}
   m_RotateInput: {x: 0, y: 0}
   m_MoveDirection: {x: 0, y: 0}
   m_DebugAim: 0

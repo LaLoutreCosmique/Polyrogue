@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: EXPLODING KITTENS
   description: 'Dash force : +15%'
-  modifier: {fileID: 11400000, guid: 8b020f27f3a78ac488e0751f54f68eb2, type: 2}
+  modifier: {fileID: 11400000, guid: 3e32ecf504edf5e4bbf0ff1d2389398b, type: 2}
   special: []

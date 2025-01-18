@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: OOF
   description: 'Projectile kb : +20%'
-  modifier: {fileID: 11400000, guid: 986fe1ffca552a5428f16a9eb9c2903b, type: 2}
+  modifier: {fileID: 11400000, guid: e62a34750512e874b90282f721af2e37, type: 2}
   special: []

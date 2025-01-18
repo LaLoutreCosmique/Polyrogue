@@ -55,7 +55,6 @@ namespace UI
                 
                 if (pickedCards.Any(c => c.cardName == pickedCard.cardName))
                 {
-                    print("Card found, redraw...");
                     i--;
                     continue;
                 }
@@ -78,10 +77,10 @@ namespace UI
             switch (result)
             {
                 case -1:
-                    print("SKIPPED");
                     break;
                 case >= 0 when result < cardsToChoose.Length:
-                    print("CHOSEN : " + cardsToChoose[result].cardName);
+                    print( "[" + result + "] CHOSEN : " + cardsToChoose[result].cardName);
+                    m_Player.UpgradeStats(cardsToChoose[result]);
                     if (cardsToChoose[result].special.Length > 0)
                         RemoveCardFromDatabase(cardsToChoose[result]);
                     break;

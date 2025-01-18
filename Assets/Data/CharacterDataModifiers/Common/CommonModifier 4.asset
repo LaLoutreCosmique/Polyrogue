@@ -9,35 +9,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69ac8de1a5187764580682c044231e47, type: 3}
+  m_Script: {fileID: 11500000, guid: 313416ffe7d741e40a88f40602417265, type: 3}
   m_Name: CommonModifier 4
   m_EditorClassIdentifier: 
-  isModifier: 1
   acceleration: 0
-  accelerationType: 1
   maxSpeed: 0
-  maxSpeedType: 1
   dashForce: 0
-  dashForceType: 1
   dashCooldown: 0.85
-  dashCooldownType: 1
   dashDuration: 0
-  dashDurationType: 0
   health: 0
-  healthType: 0
   shieldHealth: 0
-  shieldHealthType: 0
-  takenKnockbackMultiplier: 0
-  takenKnockbackMultiplierType: 0
+  suddenKnockbackMultiplier: 0
   invincibilityDuration: 0
-  invincibilityDurationType: 0
   attackCooldown: 0
-  attackCooldownType: 0
   attackDamage: 0
-  attackDamageType: 0
   attackSize: 0
-  attackSizeType: 0
   attackKnockback: 0
-  attackKnockbackType: 0
   projectileSpeed: 0
+  intParameters: 000000000000000000000000
+  accelerationType: 1
+  maxSpeedType: 0
+  dashForceType: 0
+  dashCooldownType: 1
+  dashDurationType: 0
+  healthType: 0
+  shieldHealthType: 0
+  suddenKnockbackMultiplierType: 0
+  invincibilityDurationType: 0
+  attackCooldownType: 0
+  attackDamageType: 0
+  attackSizeType: 0
+  attackKnockbackType: 0
   projectileSpeedType: 0
+  floatsModifierType: 0100000000000000000000000100000000000000000000000000000000000000000000000000000000000000
+  intsModifierType: 000000000000000000000000

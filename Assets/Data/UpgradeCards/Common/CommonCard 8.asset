@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: CRAZY FROG
   description: 'Projectile speed : +15%'
-  modifier: {fileID: 11400000, guid: 1687568274479604696512610122023f, type: 2}
+  modifier: {fileID: 11400000, guid: 570344f8ffa34564c81359f1797131b0, type: 2}
   special: []

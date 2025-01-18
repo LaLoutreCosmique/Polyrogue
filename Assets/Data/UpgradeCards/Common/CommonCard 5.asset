@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: HUH DON'T TOUCH ME
   description: 'Sudden kb : -15%'
-  modifier: {fileID: 11400000, guid: 8900915f3b874914aad4f15e5436e2a1, type: 2}
+  modifier: {fileID: 11400000, guid: cc8071e610e0aff4681e4d2656a21a6d, type: 2}
   special: []

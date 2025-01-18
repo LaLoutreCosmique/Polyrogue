@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: PATATAS BRAVAS
   description: 'Max speed : +18%'
-  modifier: {fileID: 11400000, guid: 08cbdc4aed413b5479470a58a242ac60, type: 2}
+  modifier: {fileID: 11400000, guid: 2738dbe50ec5faa4ea1a337a6b924768, type: 2}
   special: []

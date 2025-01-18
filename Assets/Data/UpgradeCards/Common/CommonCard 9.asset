@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: I SMELL THE HELL
   description: 'Projectile cd : -15%'
-  modifier: {fileID: 11400000, guid: ebea522f02a5f8449bb9d51bd17b39ea, type: 2}
+  modifier: {fileID: 11400000, guid: 6db434fc2988d9b408e628aede613d61, type: 2}
   special: []

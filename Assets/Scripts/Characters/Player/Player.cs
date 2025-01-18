@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using Characters.Player.Inputs;
+using Characters.Player.Upgrade;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -15,6 +17,9 @@ namespace Characters.Player
         [Header("Debug")]
         [SerializeField] bool m_DebugAim;
         [SerializeField] bool m_DebugVelocity;
+        
+        // UPGRADES
+        bool spamAttack = false; // Reset attack cooldown on button released
 
         protected override void Awake()
         {
@@ -32,7 +37,7 @@ namespace Characters.Player
         public void StopAttack()
         {
             m_IsAttacking = false;
-            m_AttackCooldown.Complete();
+            if (spamAttack) m_AttackCooldown.Complete();
         }
 
         protected override void OnAttackRecovered()
@@ -78,6 +83,21 @@ namespace Characters.Player
             base.Die();
             m_InputManager.DisableInputs();
             SceneManager.LoadScene("Scenes/Death");
+        }
+
+        public void UpgradeStats(UpgradeCardData card)
+        {
+            if (card.modifier)
+                m_currentData.AddModifier(card.modifier);
+
+            foreach (var upgrade in card.special)
+            {
+                spamAttack = upgrade.type switch
+                {
+                    SpecialUpgradeType.SpamAttack => upgrade.active,
+                    _ => throw new ArgumentOutOfRangeException()
+                };
+            }
         }
 
 #if UNITY_EDITOR

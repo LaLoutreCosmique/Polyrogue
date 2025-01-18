@@ -18,10 +18,10 @@ namespace Characters
         [SerializeField] protected GameObject m_ProjectilePrefab;
 
         Cooldown m_DashCooldown;
-        protected Cooldown m_DashDurationCooldown;
+        Cooldown m_DashDurationCooldown;
         protected Cooldown m_AttackCooldown;
         [HideInInspector] public Cooldown m_InvincibilityCooldown; // Start when hurt
-        CharacterData m_currentData;
+        protected CharacterData m_currentData;
         
         [HideInInspector] public Vector2 m_RotateInput;
         protected Quaternion m_RotateDirection;
