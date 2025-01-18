@@ -13,7 +13,7 @@ namespace Characters
 
         public void Hurt(int damage, float knockbackForce, Vector2 knockbackDir)
         {
-            m_Parent.rb2d.AddForce(knockbackDir * (knockbackForce * m_Parent.m_currentData.suddenKnockbackMultiplier), ForceMode2D.Impulse);
+            m_Parent.rb2d.AddForce(knockbackDir * (knockbackForce * m_Parent.Data.suddenKnockbackMultiplier), ForceMode2D.Impulse);
 
             if (!m_Parent.m_InvincibilityCooldown.HasEnded)
             {
@@ -21,11 +21,11 @@ namespace Characters
                 return;
             }
             
-            m_Parent.m_currentData.shieldHealth -= damage;
+            m_Parent.Data.shieldHealth -= damage;
             m_Parent.m_InvincibilityCooldown.Start();
             m_Parent.OnTakeDamage();
             
-            if (m_Parent.m_currentData.shieldHealth <= 0) Die();
+            if (m_Parent.Data.shieldHealth <= 0) Die();
         }
 
         public void Die()

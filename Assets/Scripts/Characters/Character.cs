@@ -21,12 +21,14 @@ namespace Characters
         protected Cooldown m_DashDurationCooldown;
         protected Cooldown m_AttackCooldown;
         [HideInInspector] public Cooldown m_InvincibilityCooldown; // Start when hurt
-        [HideInInspector] public CharacterData m_currentData;
+        CharacterData m_currentData;
         
         [HideInInspector] public Vector2 m_RotateInput;
         protected Quaternion m_RotateDirection;
         [HideInInspector] public Vector2 m_MoveDirection;
         protected bool m_IsMoving;
+
+        public CharacterData Data => m_currentData;
 
         protected virtual void Awake()
         {

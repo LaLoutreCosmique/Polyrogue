@@ -72,7 +72,6 @@ public class GameManager : MonoBehaviour
 
     IEnumerator SpawnWaves(Wave[] waves)
     {
-        print("Start phase.");
         m_IsSpawning = true;
         yield return new WaitForSeconds(2f);
         
@@ -94,7 +93,6 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(waves[i].timeBeforeNext);
         }
         
-        print("Spawn ENDED");
         m_IsSpawning = false;
         yield return null;
     }
@@ -115,8 +113,6 @@ public class GameManager : MonoBehaviour
         m_EnemiesLeft--;
         enemy.OnDie -= OnEnemyDied;
 
-        print("Enemies left : " + m_EnemiesLeft);
-        
         // Phase complete
         if (!m_IsSpawning && m_EnemiesLeft == 0) StartUpgradeState();
     }

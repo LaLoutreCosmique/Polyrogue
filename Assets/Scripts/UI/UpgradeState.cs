@@ -21,7 +21,7 @@ namespace UI
         [SerializeField] Image bg;
         [SerializeField] float bgAlpha;
         [SerializeField] TextMeshProUGUI testTxt;
-        [SerializeField] public int nbCardsToDraw;
+        [SerializeField] int nbCardsToDraw;
 
         UpgradeCardData[] cardsToChoose;
         bool isStarted;
@@ -69,7 +69,7 @@ namespace UI
 
         void DisplayCards()
         {
-            testTxt.text = cardsToChoose[0].description + " - " + cardsToChoose[1].description;
+            testTxt.text = cardsToChoose[0].cardName + " : " + cardsToChoose[0].description + " - " +  cardsToChoose[1].cardName + " : " + cardsToChoose[1].description;
             canChooseCard = true;
         }
 
@@ -81,14 +81,20 @@ namespace UI
                     print("SKIPPED");
                     break;
                 case >= 0 when result < cardsToChoose.Length:
-                    print("CHOSEN : " + cardsToChoose[result]);
+                    print("CHOSEN : " + cardsToChoose[result].cardName);
+                    if (cardsToChoose[result].special.Length > 0)
+                        RemoveCardFromDatabase(cardsToChoose[result]);
                     break;
+                default:
+                    return;
             }
 
             canChooseCard = false;
+            cardsToChoose = null;
             StopState();
         }
 
+        // ReSharper disable Unity.PerformanceAnalysis
         void StopState()
         {
             isStarted = false;
@@ -99,16 +105,31 @@ namespace UI
             
             OnFinishState?.Invoke();
         }
+
+        void RemoveCardFromDatabase(UpgradeCardData card)
+        {
+            // There's only common cards for now so it's simple
+            m_CurrentUpgradeCards.commonCards.Remove(card);
+        }
         
         void Update()
         {
-            if (isStarted && Input.GetKeyDown(KeyCode.Space))
-                StopState();
-            
             if (isStarted && bg.color.a < bgAlpha)
                 bg.color = new Color(bg.color.r, bg.color.g, bg.color.b, bg.color.a + Time.deltaTime * 5);
             else if (!isStarted && bg.color.a >= 0f)
                 bg.color = new Color(bg.color.r, bg.color.g, bg.color.b, bg.color.a - Time.deltaTime * 10);
+
+            //TODO SET THIS WITH NEW INPUT SYSTEM (nan mais oh on fait pas des choses comme ça)
+            if (isStarted && Input.GetKeyDown(KeyCode.Space))
+                OnCardChosen(-1);
+            if (canChooseCard && Input.GetKeyDown(KeyCode.Keypad0))
+                OnCardChosen(0);
+            if (canChooseCard && Input.GetKeyDown(KeyCode.Keypad1))
+                OnCardChosen(1);
+            if (canChooseCard && Input.GetKeyDown(KeyCode.Keypad2) && nbCardsToDraw >= 3)
+                OnCardChosen(2);
+            if (canChooseCard && Input.GetKeyDown(KeyCode.Keypad3) && nbCardsToDraw >= 4)
+                OnCardChosen(3);
         }
     }
 }

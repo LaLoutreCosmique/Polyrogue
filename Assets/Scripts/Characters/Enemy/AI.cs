@@ -36,7 +36,7 @@ namespace Characters.Enemy
             m_TargetInAttackRange = TargetDistance > m_AIData.maxAttackDistance;
 
             float speedMultiplier = Random.Range(0.7f, 1.3f);
-            m_Parent.m_currentData.maxSpeed *= speedMultiplier;
+            m_Parent.Data.maxSpeed *= speedMultiplier;
             
             MotionCalculations();
             Dash();
@@ -71,7 +71,7 @@ namespace Characters.Enemy
 
             // Calculate aim rotation
             Vector3 targetVel = m_Target.rb2d.velocity;
-            Vector3 aimTarget = m_Target.transform.position + targetVel * targetVel.magnitude / TargetDistance  / m_Parent.m_currentData.projectileSpeed;
+            Vector3 aimTarget = m_Target.transform.position + targetVel * targetVel.magnitude / TargetDistance  / m_Parent.Data.projectileSpeed;
             Vector2 aimRotation = aimTarget - m_Parent.transform.position;
             m_Parent.SetRotateInput(aimRotation);
             
