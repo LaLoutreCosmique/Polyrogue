@@ -42,7 +42,7 @@ namespace Characters.Enemy
             
             Vector2 dir = other.transform.position - transform.position;
             other.collider.GetComponent<IDamageable>()
-                .Hurt(Data.attackDamage, Data.attackKnockback * 1.5f, dir);
+                .Hurt((int)Data.attackDamage, Data.attackKnockback * 1.5f, dir);
         }
 
         public void SetRotateDirection(Quaternion dir)

@@ -19,7 +19,7 @@ namespace Characters.Projectiles
             m_Sender = sender;
             m_Direction = direction;
             m_Speed = projectileSpeed;
-            m_Damage = sender.Data.attackDamage;
+            m_Damage = (int)sender.Data.attackDamage;
             m_Knockback = sender.Data.attackKnockback;
 
             GetComponent<SpriteRenderer>().color = sender.GetComponent<SpriteRenderer>().color;

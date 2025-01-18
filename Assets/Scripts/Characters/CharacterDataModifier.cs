@@ -28,7 +28,6 @@ namespace Characters
         [HideInInspector] public ModifierType projectileSpeedType;
 
         [HideInInspector] public ModifierType[] floatsModifierType;
-        [HideInInspector] public ModifierType[] intsModifierType;
 
         void OnEnable()
         {
@@ -44,21 +43,17 @@ namespace Characters
                 accelerationType, 
                 maxSpeedType, 
                 dashForceType, 
-                dashCooldownType, 
+                dashCooldownType,
                 dashDurationType,
+                healthType,
+                shieldHealthType,
                 suddenKnockbackMultiplierType,
                 invincibilityDurationType,
                 attackCooldownType,
+                attackDamageType,
                 attackSizeType,
                 attackKnockbackType,
                 projectileSpeedType
-            };
-            
-            intsModifierType = new[]
-            {
-                healthType,
-                shieldHealthType,
-                attackDamageType
             };
         }
     }
@@ -119,14 +114,14 @@ namespace Characters
             EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
             EditorGUILayout.LabelField("Health Settings", EditorStyles.boldLabel);
             
-            data.health = EditorGUILayout.IntField("Health", data.health);
+            data.health = EditorGUILayout.IntField("Health", (int)data.health);
             if (data.health != 0f)
             {
                 data.healthType = (ModifierType)EditorGUILayout.EnumPopup("Modifier type", data.healthType);
                 EditorGUILayout.LabelField("");
             }
             
-            data.shieldHealth = EditorGUILayout.IntField("Shield Health", data.shieldHealth);
+            data.shieldHealth = EditorGUILayout.IntField("Shield Health", (int)data.shieldHealth);
             if (data.shieldHealth != 0f)
             {
                 data.shieldHealthType = (ModifierType)EditorGUILayout.EnumPopup("Modifier type", data.shieldHealthType);
@@ -157,7 +152,7 @@ namespace Characters
                 EditorGUILayout.LabelField("");
             }
             
-            data.attackDamage = EditorGUILayout.IntField("Attack Damage", data.attackDamage);
+            data.attackDamage = EditorGUILayout.IntField("Attack Damage", (int)data.attackDamage);
             if (data.attackDamage != 0f)
             {
                 data.attackDamageType = (ModifierType)EditorGUILayout.EnumPopup("Modifier type", data.attackDamageType);
