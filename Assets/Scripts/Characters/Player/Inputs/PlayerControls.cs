@@ -132,6 +132,114 @@ namespace Characters.Player.Inputs
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Upgrade"",
+            ""id"": ""04acc8e0-1e32-4912-9beb-dcc92b995ddb"",
+            ""actions"": [
+                {
+                    ""name"": ""Left"",
+                    ""type"": ""Button"",
+                    ""id"": ""c4df0621-ce8f-4431-9e44-a98b13508e62"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Right"",
+                    ""type"": ""Button"",
+                    ""id"": ""753197c0-a224-46de-a87e-12a172d29d02"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Up"",
+                    ""type"": ""Button"",
+                    ""id"": ""e2d52931-4ab5-4be4-82d1-cdfbeb483679"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Down"",
+                    ""type"": ""Button"",
+                    ""id"": ""54042694-ced7-4482-b65d-50c2ca166dfb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Skip"",
+                    ""type"": ""Button"",
+                    ""id"": ""d6a794c7-bd22-4e6b-8f3e-651d87360783"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""a3fc9370-ea15-4bcc-a073-b1a41ce00bf6"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Left"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b51f4a9b-6dfc-4d47-8aa6-4b0fecd89749"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""80a6c50a-f8be-493f-b946-19a3ed439588"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7be9d261-b0c8-40c0-8551-21bd6ba52263"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ba7874ca-903c-4715-8e3d-2c461a1ddced"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Skip"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -143,6 +251,13 @@ namespace Characters.Player.Inputs
             m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
             m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
             m_Player_Break = m_Player.FindAction("Break", throwIfNotFound: true);
+            // Upgrade
+            m_Upgrade = asset.FindActionMap("Upgrade", throwIfNotFound: true);
+            m_Upgrade_Left = m_Upgrade.FindAction("Left", throwIfNotFound: true);
+            m_Upgrade_Right = m_Upgrade.FindAction("Right", throwIfNotFound: true);
+            m_Upgrade_Up = m_Upgrade.FindAction("Up", throwIfNotFound: true);
+            m_Upgrade_Down = m_Upgrade.FindAction("Down", throwIfNotFound: true);
+            m_Upgrade_Skip = m_Upgrade.FindAction("Skip", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -278,6 +393,84 @@ namespace Characters.Player.Inputs
             }
         }
         public PlayerActions @Player => new PlayerActions(this);
+
+        // Upgrade
+        private readonly InputActionMap m_Upgrade;
+        private List<IUpgradeActions> m_UpgradeActionsCallbackInterfaces = new List<IUpgradeActions>();
+        private readonly InputAction m_Upgrade_Left;
+        private readonly InputAction m_Upgrade_Right;
+        private readonly InputAction m_Upgrade_Up;
+        private readonly InputAction m_Upgrade_Down;
+        private readonly InputAction m_Upgrade_Skip;
+        public struct UpgradeActions
+        {
+            private @PlayerControls m_Wrapper;
+            public UpgradeActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Left => m_Wrapper.m_Upgrade_Left;
+            public InputAction @Right => m_Wrapper.m_Upgrade_Right;
+            public InputAction @Up => m_Wrapper.m_Upgrade_Up;
+            public InputAction @Down => m_Wrapper.m_Upgrade_Down;
+            public InputAction @Skip => m_Wrapper.m_Upgrade_Skip;
+            public InputActionMap Get() { return m_Wrapper.m_Upgrade; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(UpgradeActions set) { return set.Get(); }
+            public void AddCallbacks(IUpgradeActions instance)
+            {
+                if (instance == null || m_Wrapper.m_UpgradeActionsCallbackInterfaces.Contains(instance)) return;
+                m_Wrapper.m_UpgradeActionsCallbackInterfaces.Add(instance);
+                @Left.started += instance.OnLeft;
+                @Left.performed += instance.OnLeft;
+                @Left.canceled += instance.OnLeft;
+                @Right.started += instance.OnRight;
+                @Right.performed += instance.OnRight;
+                @Right.canceled += instance.OnRight;
+                @Up.started += instance.OnUp;
+                @Up.performed += instance.OnUp;
+                @Up.canceled += instance.OnUp;
+                @Down.started += instance.OnDown;
+                @Down.performed += instance.OnDown;
+                @Down.canceled += instance.OnDown;
+                @Skip.started += instance.OnSkip;
+                @Skip.performed += instance.OnSkip;
+                @Skip.canceled += instance.OnSkip;
+            }
+
+            private void UnregisterCallbacks(IUpgradeActions instance)
+            {
+                @Left.started -= instance.OnLeft;
+                @Left.performed -= instance.OnLeft;
+                @Left.canceled -= instance.OnLeft;
+                @Right.started -= instance.OnRight;
+                @Right.performed -= instance.OnRight;
+                @Right.canceled -= instance.OnRight;
+                @Up.started -= instance.OnUp;
+                @Up.performed -= instance.OnUp;
+                @Up.canceled -= instance.OnUp;
+                @Down.started -= instance.OnDown;
+                @Down.performed -= instance.OnDown;
+                @Down.canceled -= instance.OnDown;
+                @Skip.started -= instance.OnSkip;
+                @Skip.performed -= instance.OnSkip;
+                @Skip.canceled -= instance.OnSkip;
+            }
+
+            public void RemoveCallbacks(IUpgradeActions instance)
+            {
+                if (m_Wrapper.m_UpgradeActionsCallbackInterfaces.Remove(instance))
+                    UnregisterCallbacks(instance);
+            }
+
+            public void SetCallbacks(IUpgradeActions instance)
+            {
+                foreach (var item in m_Wrapper.m_UpgradeActionsCallbackInterfaces)
+                    UnregisterCallbacks(item);
+                m_Wrapper.m_UpgradeActionsCallbackInterfaces.Clear();
+                AddCallbacks(instance);
+            }
+        }
+        public UpgradeActions @Upgrade => new UpgradeActions(this);
         public interface IPlayerActions
         {
             void OnMovement(InputAction.CallbackContext context);
@@ -285,6 +478,14 @@ namespace Characters.Player.Inputs
             void OnAttack(InputAction.CallbackContext context);
             void OnDash(InputAction.CallbackContext context);
             void OnBreak(InputAction.CallbackContext context);
+        }
+        public interface IUpgradeActions
+        {
+            void OnLeft(InputAction.CallbackContext context);
+            void OnRight(InputAction.CallbackContext context);
+            void OnUp(InputAction.CallbackContext context);
+            void OnDown(InputAction.CallbackContext context);
+            void OnSkip(InputAction.CallbackContext context);
         }
     }
 }

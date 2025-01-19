@@ -12,6 +12,8 @@ namespace Characters.Player
     {
         InputManager m_InputManager;
 
+        public event Action<int> OnUpgradeInputPerformed;
+
         bool m_IsAttacking;
 
         [Header("Debug")]
@@ -85,6 +87,20 @@ namespace Characters.Player
             SceneManager.LoadScene("Scenes/Death");
         }
 
+        public void EnableUpgradeInputs(bool value)
+        {
+            if (value)
+            {
+                m_InputManager.GameInputsEnabled = false;
+                m_InputManager.UpgradeInputsEnabled = true;
+            }
+            else
+            {
+                m_InputManager.GameInputsEnabled = true;
+                m_InputManager.UpgradeInputsEnabled = false;
+            }
+        }
+
         public void UpgradeStats(UpgradeCardData card)
         {
             if (card.modifier)
@@ -98,6 +114,11 @@ namespace Characters.Player
                     _ => throw new ArgumentOutOfRangeException()
                 };
             }
+        }
+
+        public void SelectUpgrade(int value)
+        {
+            OnUpgradeInputPerformed?.Invoke(value);
         }
 
 #if UNITY_EDITOR

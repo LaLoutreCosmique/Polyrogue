@@ -25,21 +25,27 @@ namespace UI
 
         UpgradeCardData[] cardsToChoose;
         bool isStarted;
-        bool canChooseCard;
 
         public void Init(Player player)
         {
             m_Player = player;
 
+            m_Player.OnUpgradeInputPerformed += OnCardChosen;
             m_CurrentUpgradeCards = Instantiate(m_InitialUpgradeCards);
         }
-        
+
+        void OnDisable()
+        {
+            m_Player.OnUpgradeInputPerformed -= OnCardChosen;
+
+        }
+
         public void StartState()
         {
             isStarted = true;
             
             m_Player.m_InvincibilityCooldown.Start();
-            m_Player.DisableInput();
+            m_Player.EnableUpgradeInputs(true);
             
             DrawCards(nbCardsToDraw);
         }
@@ -69,7 +75,6 @@ namespace UI
         void DisplayCards()
         {
             testTxt.text = cardsToChoose[0].cardName + " : " + cardsToChoose[0].description + " - " +  cardsToChoose[1].cardName + " : " + cardsToChoose[1].description;
-            canChooseCard = true;
         }
 
         void OnCardChosen(int result)
@@ -88,7 +93,6 @@ namespace UI
                     return;
             }
 
-            canChooseCard = false;
             cardsToChoose = null;
             StopState();
         }
@@ -100,7 +104,7 @@ namespace UI
 
             cardsToChoose = null;
             testTxt.text = "";
-            m_Player.EnableInput();
+            m_Player.EnableUpgradeInputs(false);
             
             OnFinishState?.Invoke();
         }
@@ -117,18 +121,6 @@ namespace UI
                 bg.color = new Color(bg.color.r, bg.color.g, bg.color.b, bg.color.a + Time.deltaTime * 5);
             else if (!isStarted && bg.color.a >= 0f)
                 bg.color = new Color(bg.color.r, bg.color.g, bg.color.b, bg.color.a - Time.deltaTime * 10);
-
-            //TODO SET THIS WITH NEW INPUT SYSTEM (nan mais oh on fait pas des choses comme ça)
-            if (isStarted && Input.GetKeyDown(KeyCode.Space))
-                OnCardChosen(-1);
-            if (canChooseCard && Input.GetKeyDown(KeyCode.Keypad0))
-                OnCardChosen(0);
-            if (canChooseCard && Input.GetKeyDown(KeyCode.Keypad1))
-                OnCardChosen(1);
-            if (canChooseCard && Input.GetKeyDown(KeyCode.Keypad2) && nbCardsToDraw >= 3)
-                OnCardChosen(2);
-            if (canChooseCard && Input.GetKeyDown(KeyCode.Keypad3) && nbCardsToDraw >= 4)
-                OnCardChosen(3);
         }
     }
 }

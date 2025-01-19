@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Characters;
 using Characters.Enemy;
@@ -31,7 +32,7 @@ public class GameManager : MonoBehaviour
     
     //TODO upgrade cards
     //TODO projectile factory pattern?
-    //TODO projectile + indicator pool pattern
+    //TODO projectile + indicator pool pattern?
     //TODO new projectiles (seeker, bomb, laser, inversed bomb)
     //TODO projectile database (scriptable objects)
     //TODO visuals and glowing effects (bling bling you know)
@@ -43,7 +44,7 @@ public class GameManager : MonoBehaviour
         upState.Init(m_Player);
         upState.OnFinishState += StartPlayState;
     }
-
+    
     void Start()
     {
         StartPlayState();
@@ -58,6 +59,11 @@ public class GameManager : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.U))
             StartUpgradeState();
+    }
+
+    void OnDisable()
+    {
+        upState.OnFinishState -= StartPlayState;
     }
 
     void StartPlayState()
