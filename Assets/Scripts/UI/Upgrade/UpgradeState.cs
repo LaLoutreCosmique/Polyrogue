@@ -1,14 +1,15 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Characters.Player;
 using Characters.Player.Upgrade;
-using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-namespace UI
+namespace UI.Upgrade
 {
     public class UpgradeState : MonoBehaviour
     {
@@ -16,13 +17,14 @@ namespace UI
         
         public event Action OnFinishState;
 
-        [SerializeField] UpgradeCardDatabase m_InitialUpgradeCards;
-        UpgradeCardDatabase m_CurrentUpgradeCards;
-        [SerializeField] Image bg;
-        [SerializeField] float bgAlpha;
-        [SerializeField] TextMeshProUGUI testTxt;
-        [SerializeField] int nbCardsToDraw;
+        [SerializeField] UpgradeCardDatabase m_InitialUpgradeCards; // DON'T TOUCH THIS (pls)
+        [SerializeField] Image m_Background;
+        [SerializeField] float m_BackgourndAlpha;
+        [SerializeField] int m_NbCardsToDraw;
+        [SerializeField] UpgradeCard[] m_CardsVisuals;
+        [SerializeField] UpgradeArrows m_Arrows;
 
+        UpgradeCardDatabase m_CurrentUpgradeCards;
         UpgradeCardData[] cardsToChoose;
         bool isStarted;
 
@@ -37,7 +39,6 @@ namespace UI
         void OnDisable()
         {
             m_Player.OnUpgradeInputPerformed -= OnCardChosen;
-
         }
 
         public void StartState()
@@ -45,9 +46,8 @@ namespace UI
             isStarted = true;
             
             m_Player.m_InvincibilityCooldown.Start();
-            m_Player.EnableUpgradeInputs(true);
             
-            DrawCards(nbCardsToDraw);
+            DrawCards(m_NbCardsToDraw);
         }
 
         void DrawCards(int nbCards)
@@ -69,12 +69,33 @@ namespace UI
             }
 
             cardsToChoose = pickedCards.ToArray();
-            DisplayCards();
+            StartCoroutine(DisplayCards());
         }
 
-        void DisplayCards()
+        IEnumerator DisplayCards()
         {
-            testTxt.text = cardsToChoose[0].cardName + " : " + cardsToChoose[0].description + " - " +  cardsToChoose[1].cardName + " : " + cardsToChoose[1].description;
+            for (int i = 0; i < m_NbCardsToDraw; i++)
+            {
+                print(m_CardsVisuals[i].name);
+                m_CardsVisuals[i].Display(cardsToChoose[i]);
+                m_Arrows.Display(i);
+                yield return new WaitForSecondsRealtime(0.1f);
+            }
+            
+            m_Player.EnableUpgradeInputs(true);
+        }
+
+        void HideCards(int selected)
+        {
+            for (int i = 0; i < m_NbCardsToDraw; i++)
+            {
+                if (i == selected)
+                    m_CardsVisuals[i].ValidAnim();
+                else
+                    m_CardsVisuals[i].Hide();
+            }
+            
+            m_Arrows.Hide(m_NbCardsToDraw, selected);
         }
 
         void OnCardChosen(int result)
@@ -93,6 +114,7 @@ namespace UI
                     return;
             }
 
+            HideCards(result);
             cardsToChoose = null;
             StopState();
         }
@@ -103,7 +125,6 @@ namespace UI
             isStarted = false;
 
             cardsToChoose = null;
-            testTxt.text = "";
             m_Player.EnableUpgradeInputs(false);
             
             OnFinishState?.Invoke();
@@ -117,10 +138,10 @@ namespace UI
         
         void Update()
         {
-            if (isStarted && bg.color.a < bgAlpha)
-                bg.color = new Color(bg.color.r, bg.color.g, bg.color.b, bg.color.a + Time.deltaTime * 5);
-            else if (!isStarted && bg.color.a >= 0f)
-                bg.color = new Color(bg.color.r, bg.color.g, bg.color.b, bg.color.a - Time.deltaTime * 10);
+            if (isStarted && m_Background.color.a < m_BackgourndAlpha)
+                m_Background.color = new Color(m_Background.color.r, m_Background.color.g, m_Background.color.b, m_Background.color.a + Time.deltaTime * 5);
+            else if (!isStarted && m_Background.color.a >= 0f)
+                m_Background.color = new Color(m_Background.color.r, m_Background.color.g, m_Background.color.b, m_Background.color.a - Time.deltaTime * 10);
         }
     }
 }
