@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: CommonCard 4
   m_EditorClassIdentifier: 
   cardName: YOU'LL NEVER SEE ME AGAIN
-  description: 'Dash cd : -15%'
+  description: 'Dash cooldown : -20%'
   modifier: {fileID: 11400000, guid: ffb96917d3c32e441b4c65b427e1e066, type: 2}
   special: []

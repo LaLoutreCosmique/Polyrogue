@@ -15,7 +15,7 @@ MonoBehaviour:
   acceleration: 0
   maxSpeed: 0
   dashForce: 0
-  dashCooldown: 0.85
+  dashCooldown: -0.5
   dashDuration: 0
   health: 0
   shieldHealth: 0
@@ -26,11 +26,10 @@ MonoBehaviour:
   attackSize: 0
   attackKnockback: 0
   projectileSpeed: 0
-  intParameters: 000000000000000000000000
   accelerationType: 1
   maxSpeedType: 0
   dashForceType: 0
-  dashCooldownType: 1
+  dashCooldownType: 0
   dashDurationType: 0
   healthType: 0
   shieldHealthType: 0
@@ -41,5 +40,4 @@ MonoBehaviour:
   attackSizeType: 0
   attackKnockbackType: 0
   projectileSpeedType: 0
-  floatsModifierType: 0100000000000000000000000100000000000000000000000000000000000000000000000000000000000000
-  intsModifierType: 000000000000000000000000
+  floatsModifierType: 0100000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000

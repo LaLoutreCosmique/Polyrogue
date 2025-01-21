@@ -15,7 +15,7 @@ MonoBehaviour:
   acceleration: 15
   maxSpeed: 10
   dashForce: 10
-  dashCooldown: 5
+  dashCooldown: 3
   dashDuration: 0.2
   health: 1
   shieldHealth: 1000

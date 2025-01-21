@@ -61,7 +61,7 @@ namespace UI.Upgrade
 
         public void Hide()
         {
-            m_Rect.DOShakeRotation(m_AnimDuration, 60f, fadeOut: false).SetUpdate(true);
+            m_Rect.DOShakeRotation(m_AnimDuration, 60f, vibrato: 4, fadeOut: false).SetUpdate(true);
             Sequence sequence = DOTween.Sequence().SetUpdate(true);
             sequence.Append(m_Rect.DOScale(0, m_AnimDuration));
             sequence.Append(m_Rect.DOMove(new Vector2(m_InitialPosition.x, m_Rect.position.y - Screen.height), 0));

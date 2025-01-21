@@ -76,7 +76,6 @@ namespace UI.Upgrade
         {
             for (int i = 0; i < m_NbCardsToDraw; i++)
             {
-                print(m_CardsVisuals[i].name);
                 m_CardsVisuals[i].Display(cardsToChoose[i]);
                 m_Arrows.Display(i);
                 yield return new WaitForSecondsRealtime(0.1f);

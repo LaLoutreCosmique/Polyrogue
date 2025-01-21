@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: CommonCard 0
   m_EditorClassIdentifier: 
   cardName: SWEET NOT BUSY
-  description: 'Acceleration : +20%'
+  description: 'Acceleration : +15%'
   modifier: {fileID: 11400000, guid: 3285f1c212ace394db82e2ed159a4446, type: 2}
   special: []

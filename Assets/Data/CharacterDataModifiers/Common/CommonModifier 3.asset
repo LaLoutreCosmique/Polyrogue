@@ -26,7 +26,6 @@ MonoBehaviour:
   attackSize: 0
   attackKnockback: 0
   projectileSpeed: 0
-  intParameters: 000000000000000000000000
   accelerationType: 1
   maxSpeedType: 0
   dashForceType: 0
@@ -41,5 +40,4 @@ MonoBehaviour:
   attackSizeType: 0
   attackKnockbackType: 0
   projectileSpeedType: 0
-  floatsModifierType: 0100000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-  intsModifierType: 000000000000000000000000
+  floatsModifierType: 0100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000

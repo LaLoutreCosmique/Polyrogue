@@ -83,7 +83,7 @@ namespace Characters
             float projectileSpeed = newProjectile.Speed * m_currentData.projectileSpeed;
             newProjectile.Init(this, projectileDirection.normalized, projectileSpeed);
             
-            m_AttackCooldown.Start();
+            m_AttackCooldown.Start(m_currentData.attackCooldown);
         }
         
         public void Dash(Vector2 dashDirection, float newDashCD = 0f)
@@ -93,10 +93,10 @@ namespace Characters
             if (newDashCD > 0f)
                 m_DashCooldown.Start(newDashCD);
             else
-                m_DashCooldown.Start();
+                m_DashCooldown.Start(m_currentData.dashCooldown);
 
-            m_DashDurationCooldown.Start();
-            
+            m_DashDurationCooldown.Start(m_currentData.dashDuration);
+            print(m_DashCooldown.Duration);
             rb2d.AddForce(dashDirection * m_currentData.dashForce, ForceMode2D.Impulse);
         }
         

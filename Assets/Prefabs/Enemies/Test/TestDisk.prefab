@@ -132,10 +132,9 @@ MonoBehaviour:
   rb2d: {fileID: 3498264957662643725}
   m_InitialData: {fileID: 11400000, guid: e0157625581e4e44caf475005c5b8881, type: 2}
   m_ProjectilePrefab: {fileID: 3940220184444987441, guid: 0bd75a5f50ed86d438d7d26fcb4e61d0, type: 3}
-  m_currentData: {fileID: 0}
   m_RotateInput: {x: 0, y: 0}
   m_MoveDirection: {x: 0, y: 0}
-  m_AIData: {fileID: 11400000, guid: 19b142dd51e216140ba34d4e384e960c, type: 2}
+  m_AIData: {fileID: 11400000, guid: e07b77b7eaa01a74eb1df4c7dfc0466d, type: 2}
   m_DebugRanges: 0
   m_DebugAIVision: 0
 --- !u!58 &2868761803891720197
